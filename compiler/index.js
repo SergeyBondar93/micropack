@@ -10,11 +10,9 @@ const normalizePath = (str) =>
   str.replaceAll(/\\\\|\\|\|\/\/|\/\/\/\/|\/\/|\/|\./g, "");
 
 const generateCode = (ast) => {
-  const { code } = transformFromAst(
-    ast,
-    null,
-    { presets: ["@babel/preset-env"] }
-  );
+  const { code } = transformFromAst(ast, null, {
+    presets: ["@babel/preset-env"],
+  });
   return `() => { const exports = {}; ;${code}; return exports}`;
 };
 
@@ -25,8 +23,8 @@ const createAssets = async (entryPath) => {
 
   while (paths.length) {
     let currentPath = paths.shift();
-    // TODO добавить проверка на тип файлоы в директории, 
-    // создать кеш с файлами по директориям и смотреть 
+    // TODO добавить проверка на тип файлоы в директории,
+    // создать кеш с файлами по директориям и смотреть
     // что там есть подходящее если нет расширения у импорта
     const fileContent = await fs.readFile(currentPath, "utf-8");
 
@@ -38,7 +36,7 @@ const createAssets = async (entryPath) => {
       ImportDeclaration: function (node) {
         const absolutePath = path.join(currentDir, node.node.source.value);
         node.node.source.value = normalizePath(absolutePath);
-        // TODO проверка на isDir(path) ? path + index.js : path 
+        // TODO проверка на isDir(path) ? path + index.js : path
         paths.push(absolutePath);
       },
     });
