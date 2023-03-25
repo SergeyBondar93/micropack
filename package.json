@@ -19,5 +19,8 @@
     "@babel/traverse": "^7.21.3",
     "@babel/types": "^7.21.3",
     "babel-preset-env": "^1.7.0"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.19.0"
   }
 }

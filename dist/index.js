@@ -5,7 +5,9 @@
       ("use strict");
 
       var _srcfuncjs = require("srcfuncjs");
-      (0, _srcfuncjs.sayHi)();
+      var p = document.createElement("p");
+      p.innerText = (0, _srcfuncjs.sayHi)();
+      document.getElementById("app").append(p);
       return exports;
     },
     srcfuncjs: () => {
@@ -18,7 +20,7 @@
       exports.sayHi = void 0;
       var _srcmessageindexjs = require("srcmessageindexjs");
       var sayHi = function sayHi() {
-        console.log(_srcmessageindexjs.message);
+        return _srcmessageindexjs.message;
       };
       exports.sayHi = sayHi;
       return exports;

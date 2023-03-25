@@ -1,4 +1,7 @@
-import { sayHi } from './func.js';
+import { sayHi } from "./func.js";
+import "./style.css";
 
+const p = document.createElement("p");
+p.innerText = sayHi();
 
-sayHi();
+document.getElementById("app").append(p);
